@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Putni Nalog - SPAN</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+  
+
+    <script src="~/Scripts/mojJavascript.js"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.structure.css" rel="stylesheet" />
+ 
+    <script src="~/Scripts/jquery.js"></script>
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Otvaranje putnih naloga", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now SPAN - tehničko testiranje</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

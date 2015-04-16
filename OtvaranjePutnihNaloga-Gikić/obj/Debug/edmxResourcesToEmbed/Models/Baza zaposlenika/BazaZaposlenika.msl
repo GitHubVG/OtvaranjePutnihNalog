@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PutniNaloziSpanModelStoreContainer" CdmEntityContainer="PutniNaloziEntities">
+    <EntitySetMapping Name="Odjel">
+      <EntityTypeMapping TypeName="PutniNaloziSpanModel.Odjel">
+        <MappingFragment StoreEntitySet="Odjel">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Ime_odjela" ColumnName="Ime odjela" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Zaposlenici">
+      <EntityTypeMapping TypeName="PutniNaloziSpanModel.Zaposlenici">
+        <MappingFragment StoreEntitySet="Zaposlenici">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Student" ColumnName="Student" />
+          <ScalarProperty Name="IDOdjela" ColumnName="IDOdjela" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwZaposleniciPoOdjelima">
+      <EntityTypeMapping TypeName="PutniNaloziSpanModel.vwZaposleniciPoOdjelima">
+        <MappingFragment StoreEntitySet="vwZaposleniciPoOdjelima">
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Ime_odjela" ColumnName="Ime odjela" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PrijevoznaSredstva">
+      <EntityTypeMapping TypeName="PutniNaloziSpanModel.PrijevoznaSredstva">
+        <MappingFragment StoreEntitySet="PrijevoznaSredstva">
+          <ScalarProperty Name="IDTipPrijevoznogSredstva" ColumnName="IDTipPrijevoznogSredstva" />
+          <ScalarProperty Name="PrijevoznoSredstvo" ColumnName="PrijevoznoSredstvo" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipPrijevoznogSredstva">
+      <EntityTypeMapping TypeName="PutniNaloziSpanModel.TipPrijevoznogSredstva">
+        <MappingFragment StoreEntitySet="TipPrijevoznogSredstva">
+          <ScalarProperty Name="VrstaPrijevoznogSredstva" ColumnName="VrstaPrijevoznogSredstva" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PrivatnoVozilo">
+      <EntityTypeMapping TypeName="PutniNaloziSpanModel.PrivatnoVozilo">
+        <MappingFragment StoreEntitySet="PrivatnoVozilo">
+          <ScalarProperty Name="IDPutnogNaloga" ColumnName="IDPutnogNaloga" />
+          <ScalarProperty Name="Suvozac" ColumnName="Suvozac" />
+          <ScalarProperty Name="RegistracijaPrivatnogVozila" ColumnName="RegistracijaPrivatnogVozila" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PutniNalog">
+      <EntityTypeMapping TypeName="PutniNaloziSpanModel.PutniNalog">
+        <MappingFragment StoreEntitySet="PutniNalog">
+          <ScalarProperty Name="Smještaj" ColumnName="Smještaj" />
+          <ScalarProperty Name="Broj_projekta" ColumnName="Broj projekta" />
+          <ScalarProperty Name="Relacija_putovanja" ColumnName="Relacija putovanja" />
+          <ScalarProperty Name="Razlog_dolaska" ColumnName="Razlog dolaska" />
+          <ScalarProperty Name="IDPrijevoznogSredstva" ColumnName="IDPrijevoznogSredstva" />
+          <ScalarProperty Name="Datum_zavrsetka_putovanja" ColumnName="Datum zavrsetka putovanja" />
+          <ScalarProperty Name="Datum_pocetka_putovanja" ColumnName="Datum pocetka putovanja" />
+          <ScalarProperty Name="Podnositelj_zahtjeva" ColumnName="Podnositelj zahtjeva" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Smejstaj">
+      <EntityTypeMapping TypeName="PutniNaloziSpanModel.Smejstaj">
+        <MappingFragment StoreEntitySet="Smejstaj">
+          <ScalarProperty Name="IDPutnogNaloga" ColumnName="IDPutnogNaloga" />
+          <ScalarProperty Name="Komentar" ColumnName="Komentar" />
+          <ScalarProperty Name="Odlazak_iz_smještaja" ColumnName="Odlazak iz smještaja" />
+          <ScalarProperty Name="Dolazak_u_smještaj" ColumnName="Dolazak u smještaj" />
+          <ScalarProperty Name="Zadnje_noćenje" ColumnName="Zadnje noćenje" />
+          <ScalarProperty Name="Prvo_noćenje" ColumnName="Prvo noćenje" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

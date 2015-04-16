@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PutniNaloziSpanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Odjel">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ime odjela" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PrijevoznaSredstva">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PrijevoznoSredstvo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IDTipPrijevoznogSredstva" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PrivatnoVozilo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RegistracijaPrivatnogVozila" Type="int" Nullable="false" />
+    <Property Name="Suvozac" Type="bit" Nullable="false" />
+    <Property Name="IDPutnogNaloga" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PutniNalog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Podnositelj zahtjeva" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Datum pocetka putovanja" Type="datetime" Nullable="false" />
+    <Property Name="Datum zavrsetka putovanja" Type="datetime" Nullable="false" />
+    <Property Name="IDPrijevoznogSredstva" Type="int" />
+    <Property Name="Razlog dolaska" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Relacija putovanja" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Broj projekta" Type="int" />
+    <Property Name="Smještaj" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Smejstaj">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Prvo noćenje" Type="datetime" Nullable="false" />
+    <Property Name="Zadnje noćenje" Type="datetime" Nullable="false" />
+    <Property Name="Dolazak u smještaj" Type="datetime" Nullable="false" />
+    <Property Name="Odlazak iz smještaja" Type="datetime" Nullable="false" />
+    <Property Name="Komentar" Type="nvarchar(max)" />
+    <Property Name="IDPutnogNaloga" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipPrijevoznogSredstva">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VrstaPrijevoznogSredstva" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Zaposlenici">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Prezime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Student" Type="bit" Nullable="false" />
+    <Property Name="IDOdjela" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PutniNaloziSpan.dbo.vwZaposleniciPoOdjelima' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwZaposleniciPoOdjelima">
+    <Key>
+      <PropertyRef Name="Ime" />
+      <PropertyRef Name="Prezime" />
+      <PropertyRef Name="Ime odjela" />
+    </Key>
+    <Property Name="Ime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Prezime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ime odjela" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Prijevozn__IDTip__2A4B4B5E">
+    <End Role="TipPrijevoznogSredstva" Type="Self.TipPrijevoznogSredstva" Multiplicity="1" />
+    <End Role="PrijevoznaSredstva" Type="Self.PrijevoznaSredstva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipPrijevoznogSredstva">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PrijevoznaSredstva">
+        <PropertyRef Name="IDTipPrijevoznogSredstva" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PrivatnoV__IDPut__31EC6D26">
+    <End Role="PutniNalog" Type="Self.PutniNalog" Multiplicity="1" />
+    <End Role="PrivatnoVozilo" Type="Self.PrivatnoVozilo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PutniNalog">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PrivatnoVozilo">
+        <PropertyRef Name="IDPutnogNaloga" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PutniNalo__IDPri__2D27B809">
+    <End Role="PrijevoznaSredstva" Type="Self.PrijevoznaSredstva" Multiplicity="0..1" />
+    <End Role="PutniNalog" Type="Self.PutniNalog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PrijevoznaSredstva">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PutniNalog">
+        <PropertyRef Name="IDPrijevoznogSredstva" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Smejstaj__IDPutn__34C8D9D1">
+    <End Role="PutniNalog" Type="Self.PutniNalog" Multiplicity="1" />
+    <End Role="Smejstaj" Type="Self.Smejstaj" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PutniNalog">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Smejstaj">
+        <PropertyRef Name="IDPutnogNaloga" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Zaposleni__IDOdj__1273C1CD">
+    <End Role="Odjel" Type="Self.Odjel" Multiplicity="1" />
+    <End Role="Zaposlenici" Type="Self.Zaposlenici" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Odjel">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Zaposlenici">
+        <PropertyRef Name="IDOdjela" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PutniNaloziSpanModelStoreContainer">
+    <EntitySet Name="Odjel" EntityType="Self.Odjel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PrijevoznaSredstva" EntityType="Self.PrijevoznaSredstva" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PrivatnoVozilo" EntityType="Self.PrivatnoVozilo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PutniNalog" EntityType="Self.PutniNalog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Smejstaj" EntityType="Self.Smejstaj" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipPrijevoznogSredstva" EntityType="Self.TipPrijevoznogSredstva" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Zaposlenici" EntityType="Self.Zaposlenici" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vwZaposleniciPoOdjelima" EntityType="Self.vwZaposleniciPoOdjelima" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwZaposleniciPoOdjelima].[Ime] AS [Ime], 
+    [vwZaposleniciPoOdjelima].[Prezime] AS [Prezime], 
+    [vwZaposleniciPoOdjelima].[Email] AS [Email], 
+    [vwZaposleniciPoOdjelima].[Ime odjela] AS [Ime odjela]
+    FROM [dbo].[vwZaposleniciPoOdjelima] AS [vwZaposleniciPoOdjelima]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Prijevozn__IDTip__2A4B4B5E" Association="Self.FK__Prijevozn__IDTip__2A4B4B5E">
+      <End Role="TipPrijevoznogSredstva" EntitySet="TipPrijevoznogSredstva" />
+      <End Role="PrijevoznaSredstva" EntitySet="PrijevoznaSredstva" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PrivatnoV__IDPut__31EC6D26" Association="Self.FK__PrivatnoV__IDPut__31EC6D26">
+      <End Role="PutniNalog" EntitySet="PutniNalog" />
+      <End Role="PrivatnoVozilo" EntitySet="PrivatnoVozilo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PutniNalo__IDPri__2D27B809" Association="Self.FK__PutniNalo__IDPri__2D27B809">
+      <End Role="PrijevoznaSredstva" EntitySet="PrijevoznaSredstva" />
+      <End Role="PutniNalog" EntitySet="PutniNalog" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Smejstaj__IDPutn__34C8D9D1" Association="Self.FK__Smejstaj__IDPutn__34C8D9D1">
+      <End Role="PutniNalog" EntitySet="PutniNalog" />
+      <End Role="Smejstaj" EntitySet="Smejstaj" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Zaposleni__IDOdj__1273C1CD" Association="Self.FK__Zaposleni__IDOdj__1273C1CD">
+      <End Role="Odjel" EntitySet="Odjel" />
+      <End Role="Zaposlenici" EntitySet="Zaposlenici" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

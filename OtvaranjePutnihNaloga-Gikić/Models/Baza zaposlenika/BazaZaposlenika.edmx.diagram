@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9de8434edbaf4612bb7f7d4a525b8127" Name="Diagram1">
+        <EntityTypeShape EntityType="PutniNaloziSpanModel.Odjel" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PutniNaloziSpanModel.Zaposlenici" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PutniNaloziSpanModel.vwZaposleniciPoOdjelima" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="PutniNaloziSpanModel.FK__Zaposleni__IDOdj__1273C1CD" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PutniNaloziSpanModel.PrijevoznaSredstva" Width="1.5" PointX="5.625" PointY="5.5" />
+        <EntityTypeShape EntityType="PutniNaloziSpanModel.TipPrijevoznogSredstva" Width="1.5" PointX="3.375" PointY="5.75" />
+        <AssociationConnector Association="PutniNaloziSpanModel.FK__Prijevozn__IDTip__2A4B4B5E" />
+        <EntityTypeShape EntityType="PutniNaloziSpanModel.PrivatnoVozilo" Width="1.5" PointX="10.125" PointY="5.625" />
+        <EntityTypeShape EntityType="PutniNaloziSpanModel.PutniNalog" Width="1.5" PointX="7.875" PointY="4.875" />
+        <AssociationConnector Association="PutniNaloziSpanModel.FK__PutniNalo__IDPri__2D27B809" />
+        <AssociationConnector Association="PutniNaloziSpanModel.FK__PrivatnoV__IDPut__31EC6D26" />
+        <EntityTypeShape EntityType="PutniNaloziSpanModel.Smejstaj" Width="1.5" PointX="10.125" PointY="2.25" />
+        <AssociationConnector Association="PutniNaloziSpanModel.FK__Smejstaj__IDPutn__34C8D9D1" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

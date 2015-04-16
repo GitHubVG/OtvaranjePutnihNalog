@@ -1,0 +1,65 @@
+﻿@model IEnumerable<OtvaranjePutnihNaloga_Gikić.Models.Baza_zaposlenika.Zaposlenici>
+
+@{
+    ViewBag.Title = "Zaposlenici";
+}
+
+<h2>Zaposlenici</h2>
+
+<p>
+    @Html.ActionLink("Novi zaposlenik", "Create", null, new {@class="link"})
+</p>
+<table class="CSSTableGenerator">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prezime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Student)
+        </th>
+        <th>
+            @Html.DisplayName("Odjel")
+        </th>
+        <th>
+           
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prezime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Odjel.Ime_odjela)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @using (Html.BeginForm("Delete", "Home", new { id = item.ID }))
+                {
+                <td><input class="buttonCss" id="Submit1" type="submit" value="Delete" na onclick="return confirm('Jeste li sigurni da želite obrisati zaposlenika @item.Ime @item.Prezime iz baze?')" /></td>
+
+                }
+               
+            </tr>
+    }
+
+</table>

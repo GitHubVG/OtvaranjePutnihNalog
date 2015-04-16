@@ -1,0 +1,58 @@
+﻿@model OtvaranjePutnihNaloga_Gikić.Models.Baza_zaposlenika.Zaposlenici
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Zaposlenici</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prezime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prezime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Student)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Odjel.Ime_odjela)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Odjel.Ime_odjela)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Povratak na Home page", "Index")
+</p>

@@ -1,0 +1,44 @@
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\OtvaranjePutnihNaloga-Gikić.dll.config
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\OtvaranjePutnihNaloga-Gikić.dll
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\OtvaranjePutnihNaloga-Gikić.pdb
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\EntityFramework.dll
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\EntityFramework.SqlServer.dll
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Helpers.dll
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Mvc.dll
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Razor.dll
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Webpages.Deployment.dll
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Webpages.dll
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Webpages.Razor.dll
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\EntityFramework.xml
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\EntityFramework.SqlServer.xml
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Razor.xml
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Webpages.xml
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Webpages.Deployment.xml
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Webpages.Razor.xml
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Helpers.xml
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Mvc.xml
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\obj\Debug\OtvaranjePutnihNaloga-Gikić.csprojResolveAssemblyReference.cache
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\obj\Debug\OtvaranjePutnihNaloga-Gikić.dll
+D:\Programiranje\Web C# PROJEKTI\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\obj\Debug\OtvaranjePutnihNaloga-Gikić.pdb
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\OtvaranjePutnihNaloga-Gikić.dll.config
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\OtvaranjePutnihNaloga-Gikić.dll
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\OtvaranjePutnihNaloga-Gikić.pdb
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\EntityFramework.dll
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\EntityFramework.SqlServer.dll
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Helpers.dll
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Mvc.dll
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Razor.dll
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Webpages.Deployment.dll
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Webpages.dll
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Webpages.Razor.dll
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\EntityFramework.xml
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\EntityFramework.SqlServer.xml
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Razor.xml
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Webpages.xml
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Webpages.Deployment.xml
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Webpages.Razor.xml
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Helpers.xml
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\bin\System.Web.Mvc.xml
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\obj\Debug\OtvaranjePutnihNaloga-Gikić.csprojResolveAssemblyReference.cache
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\obj\Debug\OtvaranjePutnihNaloga-Gikić.dll
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-Gikić\obj\Debug\OtvaranjePutnihNaloga-Gikić.pdb
