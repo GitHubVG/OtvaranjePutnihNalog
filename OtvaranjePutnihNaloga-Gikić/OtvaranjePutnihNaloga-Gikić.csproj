@@ -226,6 +226,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Views\Home\PrivatnoPrijevoznoSredstvo.cshtml" />
     <Content Include="Views\Home\Smjestaj.cshtml" />
+    <Content Include="Views\Home\IspisPutnogNaloga.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

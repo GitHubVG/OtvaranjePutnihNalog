@@ -49,7 +49,7 @@ namespace OtvaranjePutnihNaloga_Gikić.Models
         }
 
         internal class MetadataPutniNalog
-        {
+        {               
             [Required(ErrorMessage = "Molim unesite podnositelja zahtjeva.")]
             [Display(Name = "Podnositelj zahtjeva")]
 
@@ -59,6 +59,7 @@ namespace OtvaranjePutnihNaloga_Gikić.Models
             [Display(Name = "Datum početka putovanja")]
             public System.DateTime Datum_pocetka_putovanja { get; set; }
 
+        //    [Range(minDate.Day,DateTime.MaxValue.Day)]
             [Required(ErrorMessage = "Molim unesite datum završetka putovanja.")]
             [Display(Name = "Datum završetka putovanja")]
             public System.DateTime Datum_zavrsetka_putovanja { get; set; }
@@ -114,7 +115,7 @@ namespace OtvaranjePutnihNaloga_Gikić.Models
 
         }
         public class MetadataSmjestaj
-        {
+        {            
             [Required(ErrorMessage = "Molim unesite datum.")]
             [Display(Name = "Datum prvog noćenja")]
             public System.DateTime Prvo_noćenje { get; set; }
@@ -122,7 +123,7 @@ namespace OtvaranjePutnihNaloga_Gikić.Models
             [Required(ErrorMessage = "Molim unesite datum.")]
             [Display(Name = "Datum zadnjeg noćenja")]
             public System.DateTime Zadnje_noćenje { get; set; }
-
+            
             [Required(ErrorMessage = "Molim unesite datum.")]
             [Display(Name = "Datum dolaska u smještaj")]
             public System.DateTime Dolazak_u_smještaj { get; set; }
@@ -131,6 +132,8 @@ namespace OtvaranjePutnihNaloga_Gikić.Models
             [Display(Name = "Datum odlaska iz smještaja")]
             public System.DateTime Odlazak_iz_smještaja { get; set; }
 
+                     
+            
         }
 
 

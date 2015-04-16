@@ -127,11 +127,31 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
         }
 
         [HttpPost]
-        public ActionResult OtvaranjePutnogNaloga(PutniNalog nalog, string PrijevoznoSredstvo)
+        public ActionResult OtvaranjePutnogNaloga(PutniNalog nalog, string PrijevoznoSredstvo, DateTime? Datum_pocetka_putovanja, DateTime? Datum_zavrsetka_putovanja)
         {
             ViewBag.PrijevoznoSredstvo = new SelectList(db.PrijevoznaSredstva, "IDTipPrijevoznogSredstva", "PrijevoznoSredstvo");
 
             nalog.IDPrijevoznogSredstva = int.Parse(PrijevoznoSredstvo);
+
+           
+
+            //provjera razlike u datumima
+
+            //if(Datum_pocetka_putovanja!=null && Datum_zavrsetka_putovanja!=null)
+            //{
+            //    DateTime d1 = (DateTime)Datum_pocetka_putovanja;
+            //    DateTime d2 = (DateTime)Datum_zavrsetka_putovanja;
+
+
+            //      TimeSpan razlikaUDatumima  = d1.Subtract(d2);
+            //      if (razlikaUDatumima.Days < 0)
+            //      {
+            //          return View();
+
+            //      }
+            //}
+
+           
 
             if (ModelState.IsValid)
             {
@@ -223,5 +243,12 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
                 return View();
             }
         }
+
+        public ActionResult IspisPutnogNaloga()
+        {
+           
+            return View(db.PutniNalog);
+        }
+        
     }
 }

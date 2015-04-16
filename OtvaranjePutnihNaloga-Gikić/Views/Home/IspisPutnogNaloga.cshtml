@@ -1,0 +1,69 @@
+﻿@model IEnumerable<OtvaranjePutnihNaloga_Gikić.Models.Baza_zaposlenika.PutniNalog>
+
+@{
+    ViewBag.Title = "Ispis putnih naloga";
+}
+
+<h2>Ispis putnih naloga</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Podnositelj_zahtjeva)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Datum_pocetka_putovanja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Datum_zavrsetka_putovanja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Razlog_dolaska)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Relacija_putovanja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Broj_projekta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Smještaj)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrijevoznaSredstva.PrijevoznoSredstvo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Podnositelj_zahtjeva)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Datum_pocetka_putovanja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Datum_zavrsetka_putovanja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Razlog_dolaska)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Relacija_putovanja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Broj_projekta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Smještaj)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrijevoznaSredstva.TipPrijevoznogSredstva.VrstaPrijevoznogSredstva)
+        </td>
+     
+    </tr>
+}
+
+</table>

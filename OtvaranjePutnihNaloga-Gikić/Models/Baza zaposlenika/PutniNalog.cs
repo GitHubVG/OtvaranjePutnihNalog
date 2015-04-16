@@ -12,6 +12,7 @@ namespace OtvaranjePutnihNaloga_Gikić.Models.Baza_zaposlenika
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     [MetadataType(typeof(OtvaranjePutnihNaloga_Gikić.Models.MetadataKlasa.MetadataPutniNalog))]
     public partial class PutniNalog
     {

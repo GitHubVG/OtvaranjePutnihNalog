@@ -125,3 +125,13 @@ SELECT * FROM SMEJSTAJ;
 SELECT * FROM PutniNalog order by ID desc;
 
 select * from PrivatnoVozilo;
+
+CREATE VIEW vwPutniNalog
+as
+SELECT t1.[Datum pocetka putovanja],t1.[Datum zavrsetka putovanja],t1.[Podnositelj zahtjeva],t1.[Razlog dolaska],t1.[Relacija putovanja], t2.Komentar,t2.[Prvo noćenje],t2.[Zadnje noćenje],t3.RegistracijaPrivatnogVozila,t3.Suvozac
+from PutniNalog t1
+join Smejstaj t2
+on t1.ID=t2.IDPutnogNaloga
+join PrivatnoVozilo t3
+on t1.ID=t3.IDPutnogNaloga
+
