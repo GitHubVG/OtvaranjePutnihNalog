@@ -160,6 +160,7 @@
       <DependentUpon>BazaZaposlenika.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MetadataKlasa.cs" />
+    <Compile Include="Models\ProvjeraPodataka.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
