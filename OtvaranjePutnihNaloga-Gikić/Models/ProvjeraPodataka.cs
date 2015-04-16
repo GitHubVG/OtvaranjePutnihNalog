@@ -19,17 +19,18 @@ namespace OtvaranjePutnihNaloga_Gikić.Models
             {
                 var IDzadnjiPutniNalog = db.PutniNalog.OrderByDescending(x => x.ID).First().ID;
                 List<int> IDputnihNalogaSaSmjestajem = new List<int>();
-                List<int> listaPrijevoznihSredstava = new List<int>();
+                List<int> IDPrijevoznihSredstava = new List<int>();
 
                 foreach (var id in db.PutniNalog.Where(x => x.Smještaj))
                 {
                     IDputnihNalogaSaSmjestajem.Add(id.ID);
                 }
                 var smjestaji = db.Smejstaj;
+                var privatnaVozila = db.PrivatnoVozilo;
 
-                foreach (var id in db.PutniNalog.Where(x => x.PrijevoznaSredstva.IDTipPrijevoznogSredstva == 2))
+                foreach (var id in db.PutniNalog.Where(x => x.IDPrijevoznogSredstva == 2)) //2 je foreign key koji pokazuje na privatno vozilo
                 {
-                    listaPrijevoznihSredstava.Add(id.ID);
+                    IDPrijevoznihSredstava.Add(id.ID);
                 }
 
 
@@ -51,6 +52,28 @@ namespace OtvaranjePutnihNaloga_Gikić.Models
                         db.SaveChanges();
                     }
 
+                }
+
+                for(int i=0;i<IDPrijevoznihSredstava.Count;i++)
+                {
+                    int placeholder = IDPrijevoznihSredstava[i];
+                    List<int> listaIdovaPutnihNalogaPrivatnihVozila = new List<int>();
+
+                    foreach(var v in privatnaVozila)
+                    {
+                        listaIdovaPutnihNalogaPrivatnihVozila.Add(v.IDPutnogNaloga);
+                    }
+                  
+                    //ID-ovi putnih naloga koji se pojavljuju samo u tablici putni nalog a sadrže ID prijevoznog
+                    //sredstva==2 (nije dovršen unos informacija o privatnim vozilima pa se ovaj nalog mora obrisati)
+                    var test = IDPrijevoznihSredstava.Except(listaIdovaPutnihNalogaPrivatnihVozila).ToList();
+
+                    foreach(var x in test)
+                    {
+                       db.PutniNalog.Remove(db.PutniNalog.Single(var=>var.ID==x));
+                       db.SaveChanges();
+                    }
+                                                        
                 }
 
             }
