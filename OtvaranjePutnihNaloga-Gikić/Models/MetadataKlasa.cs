@@ -50,7 +50,7 @@ namespace OtvaranjePutnihNaloga_Gikić.Models
 
         internal class MetadataPutniNalog
         {               
-            [Required(ErrorMessage = "Molim unesite podnositelja zahtjeva.")]
+         //   [Required(ErrorMessage = "Molim unesite podnositelja zahtjeva.")]
             [Display(Name = "Podnositelj zahtjeva")]
 
             public string Podnositelj_zahtjeva { get; set; }

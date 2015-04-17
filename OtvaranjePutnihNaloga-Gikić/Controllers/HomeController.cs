@@ -123,33 +123,43 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
         public ActionResult OtvaranjePutnogNaloga()
         {
             ViewBag.PrijevoznoSredstvo = new SelectList(db.PrijevoznaSredstva, "IDTipPrijevoznogSredstva", "PrijevoznoSredstvo");
+            
+            ViewBag.PodnositeljZahtjeva = new SelectList(db.Zaposlenici.Where(x => x.Student == false),"Prezime","Prezime");
             return View();
         }
 
         [HttpPost]
-        public ActionResult OtvaranjePutnogNaloga(PutniNalog nalog, string PrijevoznoSredstvo, DateTime? Datum_pocetka_putovanja, DateTime? Datum_zavrsetka_putovanja)
+        public ActionResult OtvaranjePutnogNaloga(PutniNalog nalog, string PrijevoznoSredstvo, DateTime? Datum_pocetka_putovanja, DateTime? Datum_zavrsetka_putovanja,string PodnositeljZahtjeva)
         {
             ViewBag.PrijevoznoSredstvo = new SelectList(db.PrijevoznaSredstva, "IDTipPrijevoznogSredstva", "PrijevoznoSredstvo");
+            ViewBag.PodnositeljZahtjeva = new SelectList(db.Zaposlenici.Where(x => x.Student == false), "Prezime", "Prezime");
 
             nalog.IDPrijevoznogSredstva = int.Parse(PrijevoznoSredstvo);
-
+            
+            nalog.Podnositelj_zahtjeva = PodnositeljZahtjeva;
            
 
-            //provjera razlike u datumima
+          //  provjera razlike u datumima
 
-            //if(Datum_pocetka_putovanja!=null && Datum_zavrsetka_putovanja!=null)
-            //{
-            //    DateTime d1 = (DateTime)Datum_pocetka_putovanja;
-            //    DateTime d2 = (DateTime)Datum_zavrsetka_putovanja;
+            if(Datum_pocetka_putovanja!=null && Datum_zavrsetka_putovanja!=null)
+            {
+                DateTime d1 = (DateTime)Datum_pocetka_putovanja;
+                DateTime d2 = (DateTime)Datum_zavrsetka_putovanja;
 
+              // string polazakMDY = String.Format("{0:MM/d/yyyy HH:mm:ss}", d1);
+              // string zavrsetakMDY = String.Format("{0:MM/d/yyyy HH:mm:ss}", d2);
+               //d1 = Convert.ToDateTime(polazakMDY);
+               //d2 = Convert.ToDateTime(zavrsetakMDY);
 
-            //      TimeSpan razlikaUDatumima  = d1.Subtract(d2);
-            //      if (razlikaUDatumima.Days < 0)
-            //      {
-            //          return View();
+                  TimeSpan razlikaUDatumima  = d2.Subtract(d1);
+                 
+                  if (razlikaUDatumima.Days < 0)
+                  {
+                      ModelState.AddModelError("Datum_pocetka_putovanja", "Datum pocetka putovanja mora biti prije datuma zavrsetka putovanja (MDY format)");
+                     
 
-            //      }
-            //}
+                  }
+            }
 
            
 
@@ -230,6 +240,37 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
         public ActionResult Smjestaj(Smejstaj smjestaj)
         {
             smjestaj.IDPutnogNaloga = db.PutniNalog.Select(x => x.ID).OrderByDescending(x => x).First();
+
+            TimeSpan razlikaUDatumimaDolaskaIOdlaska = smjestaj.Odlazak_iz_smještaja.Subtract(smjestaj.Dolazak_u_smještaj);
+            TimeSpan razlikaUDatumimaNocenja = smjestaj.Zadnje_noćenje.Subtract(smjestaj.Prvo_noćenje);
+
+            if (razlikaUDatumimaNocenja.Days < 0)
+            {
+                ModelState.AddModelError("Prvo_noćenje", "Datum prvog noćenja ne može biti nakon datuma poslijednjeg noćenja.");
+
+            }
+            if (razlikaUDatumimaDolaskaIOdlaska.Days < 0)
+            {
+                ModelState.AddModelError("Dolazak_u_smještaj", "Datum dolaska u smjestaj ne može biti nakon datuma odlaska.");
+
+
+            }
+          
+            if(smjestaj.Dolazak_u_smještaj>smjestaj.Zadnje_noćenje)
+            {
+                ModelState.AddModelError("Dolazak_u_smještaj", "Datum dolaska u smještaj ne može biti nakon datuma zadnjeg noćenja.");
+
+            }
+            if(smjestaj.Dolazak_u_smještaj>smjestaj.Prvo_noćenje)
+            {
+                ModelState.AddModelError("Dolazak_u_smještaj", "Datum dolaska u smještaj ne može biti nakon datuma prvog noćenja.");
+
+            }
+            if (smjestaj.Odlazak_iz_smještaja < smjestaj.Prvo_noćenje || smjestaj.Odlazak_iz_smještaja<smjestaj.Zadnje_noćenje || smjestaj.Odlazak_iz_smještaja < smjestaj.Dolazak_u_smještaj)
+            {
+                ModelState.AddModelError("Odlazak_iz_smještaja", "Provjerite datum odlaska iz smještaja. (mora biti nakon datuma: prvog noćenja, zadnjeg noćenja i dolaska u smještaj)");
+
+            }
 
             if (ModelState.IsValid)
             {

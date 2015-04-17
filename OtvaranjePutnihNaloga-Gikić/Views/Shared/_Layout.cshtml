@@ -42,13 +42,26 @@
     $(document).ready(function () {
 
 
-        $("#Datum_pocetka_putovanja").datepicker();
-        $("#Datum_zavrsetka_putovanja").datepicker();
-        $("#Prvo_no_enje").datepicker();
-        $("#Zadnje_no_enje").datepicker();
-        $("#Dolazak_u_smje_taj").datepicker();
-        $("#Odlazak_iz_smje_taja").datepicker();
-        
+        $("#Datum_pocetka_putovanja").datepicker({
+            dateFormat: 'dd-mm-yy'
+        });
+        $("#Datum_zavrsetka_putovanja").datepicker({
+            dateFormat: 'dd-mm-yy'
+        });
+        $("#Prvo_no_enje").datepicker({
+            dateFormat: 'dd-mm-yy'
+        });
+        $("#Dolazak_u_smje_taj").datepicker({
+            dateFormat: 'dd-mm-yy'
+        });
+        $("#Odlazak_iz_smje_taja").datepicker({
+            dateFormat: 'dd-mm-yy'
+        });
+
+        $("#Zadnje_no_enje").datepicker({
+            dateFormat: 'dd-mm-yy'
+        });
+       
     });
     </script>
 
