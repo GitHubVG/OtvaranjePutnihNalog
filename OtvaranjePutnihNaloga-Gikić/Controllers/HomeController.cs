@@ -244,6 +244,12 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
             TimeSpan razlikaUDatumimaDolaskaIOdlaska = smjestaj.Odlazak_iz_smještaja.Subtract(smjestaj.Dolazak_u_smještaj);
             TimeSpan razlikaUDatumimaNocenja = smjestaj.Zadnje_noćenje.Subtract(smjestaj.Prvo_noćenje);
 
+           var pocetakPutovanja = db.PutniNalog.OrderByDescending(x => x.ID).First().Datum_pocetka_putovanja; //zadnji datum pocetka putovanja iz klase PutniNalog
+           var zavrsetakPutovanja = db.PutniNalog.OrderByDescending(x => x.ID).First().Datum_zavrsetka_putovanja; //zadnji datum završetka putovanja iz klase PutniNalog
+
+            
+
+
             if (razlikaUDatumimaNocenja.Days < 0)
             {
                 ModelState.AddModelError("Prvo_noćenje", "Datum prvog noćenja ne može biti nakon datuma poslijednjeg noćenja.");
@@ -255,10 +261,21 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
 
 
             }
-          
-            if(smjestaj.Dolazak_u_smještaj>smjestaj.Zadnje_noćenje)
+
+            if(smjestaj.Prvo_noćenje<pocetakPutovanja || smjestaj.Prvo_noćenje>zavrsetakPutovanja)
             {
-                ModelState.AddModelError("Dolazak_u_smještaj", "Datum dolaska u smještaj ne može biti nakon datuma zadnjeg noćenja.");
+                ModelState.AddModelError("Prvo_noćenje", "Datum prvog noćenja ne može biti prije datuma početka putovanja te nakon datuma završetka putovanja.");
+
+            }
+            if(smjestaj.Zadnje_noćenje>zavrsetakPutovanja)
+            {
+                ModelState.AddModelError("Zadnje_noćenje", "Datum zadnjeg noćenja ne može biti nakon datuma završetka putnovanja.");
+
+            }
+          
+            if(smjestaj.Dolazak_u_smještaj>smjestaj.Zadnje_noćenje || smjestaj.Dolazak_u_smještaj<pocetakPutovanja || smjestaj.Dolazak_u_smještaj>zavrsetakPutovanja)
+            {
+                ModelState.AddModelError("Dolazak_u_smještaj", "Datum dolaska u smještaj ne može biti nakon datuma zadnjeg noćenja, ne smije biti manji od datuma početka putovanja te veći od datuma završetka putovanja.");
 
             }
             if(smjestaj.Dolazak_u_smještaj>smjestaj.Prvo_noćenje)
@@ -266,9 +283,9 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
                 ModelState.AddModelError("Dolazak_u_smještaj", "Datum dolaska u smještaj ne može biti nakon datuma prvog noćenja.");
 
             }
-            if (smjestaj.Odlazak_iz_smještaja < smjestaj.Prvo_noćenje || smjestaj.Odlazak_iz_smještaja<smjestaj.Zadnje_noćenje || smjestaj.Odlazak_iz_smještaja < smjestaj.Dolazak_u_smještaj)
+            if (smjestaj.Odlazak_iz_smještaja < smjestaj.Prvo_noćenje || smjestaj.Odlazak_iz_smještaja < smjestaj.Zadnje_noćenje || smjestaj.Odlazak_iz_smještaja < smjestaj.Dolazak_u_smještaj || smjestaj.Odlazak_iz_smještaja > zavrsetakPutovanja)
             {
-                ModelState.AddModelError("Odlazak_iz_smještaja", "Provjerite datum odlaska iz smještaja. (mora biti nakon datuma: prvog noćenja, zadnjeg noćenja i dolaska u smještaj)");
+                ModelState.AddModelError("Odlazak_iz_smještaja", "Provjerite datum odlaska iz smještaja. (mora biti nakon datuma: prvog noćenja, zadnjeg noćenja , dolaska u smještaj te datuma završetka putovanja.)");
 
             }
 
