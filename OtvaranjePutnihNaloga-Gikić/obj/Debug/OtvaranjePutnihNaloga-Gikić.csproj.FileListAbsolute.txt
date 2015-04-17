@@ -64,3 +64,8 @@ D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga
 D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-SPAN\OtvaranjePutnihNaloga-Gikić\obj\Debug\OtvaranjePutnihNaloga-Gikić.csprojResolveAssemblyReference.cache
 D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-SPAN\OtvaranjePutnihNaloga-Gikić\obj\Debug\OtvaranjePutnihNaloga-Gikić.dll
 D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-SPAN\OtvaranjePutnihNaloga-Gikić\obj\Debug\OtvaranjePutnihNaloga-Gikić.pdb
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-SPAN\OtvaranjePutnihNaloga-Gikić\bin\Postal.dll
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-SPAN\OtvaranjePutnihNaloga-Gikić\bin\RazorEngine.dll
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-SPAN\OtvaranjePutnihNaloga-Gikić\bin\Postal.xml
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-SPAN\OtvaranjePutnihNaloga-Gikić\bin\RazorEngine.pdb
+D:\Programiranje\SPAN_PROJEKT\OtvaranjePutnihNaloga-Gikić\OtvaranjePutnihNaloga-SPAN\OtvaranjePutnihNaloga-Gikić\bin\RazorEngine.xml

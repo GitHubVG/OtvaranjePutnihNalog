@@ -1,5 +1,6 @@
 ﻿using OtvaranjePutnihNaloga_Gikić.Models;
 using OtvaranjePutnihNaloga_Gikić.Models.Baza_zaposlenika;
+using Postal;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -186,12 +187,18 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
                 }
                 else
                 {
+                    dynamic email = new Email("PutniNalogEmail"); // POSTAL - ZA SLANJE EMAILOVA
+                    email.To = "testiranjepostalemaila@gmail.com ";
+                    email.Nalog = nalog;
+                    email.Send();
                     return RedirectToAction("Index");
                 }
             }
 
             else
             {
+               
+
                 return View();
 
             }
@@ -221,6 +228,11 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
                 }
                 else
                 {
+                    dynamic email = new Email("PutniNalogEmail"); // POSTAL - ZA SLANJE EMAILOVA
+                    email.To = "testiranjepostalemaila@gmail.com ";
+                    email.PrivatnoVozilo = privatnoVozilo;
+                    email.Nalog = db.PutniNalog.OrderByDescending(x => x.ID).First();
+                    email.Send();
                     return RedirectToAction("Index");
                 }
             }
@@ -293,6 +305,14 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
             {
                 db.Smejstaj.Add(smjestaj);
                 db.SaveChanges();
+
+                dynamic email = new Email("PutniNalogEmail"); // POSTAL - ZA SLANJE EMAILOVA
+                email.To = "testiranjepostalemaila@gmail.com ";
+                email.PrivatnoVozilo = db.PrivatnoVozilo.OrderByDescending(x=>x.ID).First();
+                email.Nalog = db.PutniNalog.OrderByDescending(x => x.ID).First();
+                email.Smjestaj = smjestaj;
+                email.Send();
+
 
                 return RedirectToAction("Index");
             }
