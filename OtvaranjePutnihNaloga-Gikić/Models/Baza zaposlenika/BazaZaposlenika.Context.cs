@@ -31,7 +31,7 @@ namespace OtvaranjePutnihNaloga_Gikić.Models.Baza_zaposlenika
         public virtual DbSet<PrijevoznaSredstva> PrijevoznaSredstva { get; set; }
         public virtual DbSet<TipPrijevoznogSredstva> TipPrijevoznogSredstva { get; set; }
         public virtual DbSet<PrivatnoVozilo> PrivatnoVozilo { get; set; }
-        public virtual DbSet<PutniNalog> PutniNalog { get; set; }
         public virtual DbSet<Smejstaj> Smejstaj { get; set; }
+        public virtual DbSet<PutniNalog> PutniNalog { get; set; }
     }
 }

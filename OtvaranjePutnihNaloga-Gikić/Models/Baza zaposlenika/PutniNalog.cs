@@ -13,6 +13,7 @@ namespace OtvaranjePutnihNaloga_Gikić.Models.Baza_zaposlenika
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+
     [MetadataType(typeof(OtvaranjePutnihNaloga_Gikić.Models.MetadataKlasa.MetadataPutniNalog))]
     public partial class PutniNalog
     {
@@ -31,6 +32,7 @@ namespace OtvaranjePutnihNaloga_Gikić.Models.Baza_zaposlenika
         public string Relacija_putovanja { get; set; }
         public Nullable<int> Broj_projekta { get; set; }
         public bool Smještaj { get; set; }
+        public Nullable<int> Broj_osoba { get; set; }
     
         public virtual PrijevoznaSredstva PrijevoznaSredstva { get; set; }
         public virtual ICollection<PrivatnoVozilo> PrivatnoVozilo { get; set; }

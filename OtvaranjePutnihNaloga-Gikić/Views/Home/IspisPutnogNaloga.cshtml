@@ -7,7 +7,7 @@
 <h2>Ispis putnih naloga</h2>
 
 
-<table class="table">
+<table class="CSSTableGenerator">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Podnositelj_zahtjeva)
@@ -33,10 +33,14 @@
         <th>
             @Html.DisplayNameFor(model => model.PrijevoznaSredstva.PrijevoznoSredstvo)
         </th>
-        <th></th>
-    </tr>
+        <th>
+            @Html.Label("Broj osoba")
+    </th>
+    <th></th>
+</tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Podnositelj_zahtjeva)
@@ -60,9 +64,12 @@
             @Html.DisplayFor(modelItem => item.Smještaj)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PrijevoznaSredstva.TipPrijevoznogSredstva.VrstaPrijevoznogSredstva)
+            @Html.DisplayFor(modelItem => item.PrijevoznaSredstva.PrijevoznoSredstvo)
         </td>
-     
+        <td>
+            @Html.DisplayFor(modelItem => item.Broj_osoba)
+        </td>
+
     </tr>
 }
 

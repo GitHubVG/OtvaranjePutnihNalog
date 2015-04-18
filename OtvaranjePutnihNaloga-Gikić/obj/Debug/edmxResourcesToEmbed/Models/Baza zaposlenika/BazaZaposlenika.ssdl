@@ -37,6 +37,7 @@
     <Property Name="Relacija putovanja" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Broj projekta" Type="int" />
     <Property Name="Smještaj" Type="bit" Nullable="false" />
+    <Property Name="Broj osoba" Type="int" />
   </EntityType>
   <EntityType Name="Smejstaj">
     <Key>
@@ -68,8 +69,6 @@
     <Property Name="Student" Type="bit" Nullable="false" />
     <Property Name="IDOdjela" Type="int" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'PutniNaloziSpan.dbo.vwPutniNalog' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <!--Errors Found During Generation:
 warning 6002: The table/view 'PutniNaloziSpan.dbo.vwZaposleniciPoOdjelima' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="vwZaposleniciPoOdjelima">

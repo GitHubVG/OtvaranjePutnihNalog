@@ -42,6 +42,7 @@
           <Property Name="Relacija putovanja" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Broj projekta" Type="int" />
           <Property Name="Smještaj" Type="bit" Nullable="false" />
+          <Property Name="Broj osoba" Type="int" />
         </EntityType>
         <EntityType Name="Smejstaj">
           <Key>
@@ -73,8 +74,6 @@
           <Property Name="Student" Type="bit" Nullable="false" />
           <Property Name="IDOdjela" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'PutniNaloziSpan.dbo.vwPutniNalog' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <!--Errors Found During Generation:
 warning 6002: The table/view 'PutniNaloziSpan.dbo.vwZaposleniciPoOdjelima' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vwZaposleniciPoOdjelima">
@@ -247,6 +246,7 @@ warning 6002: The table/view 'PutniNaloziSpan.dbo.vwZaposleniciPoOdjelima' does 
             <End Role="PrijevoznaSredstva" EntitySet="PrijevoznaSredstva" />
           </AssociationSet>
           <EntitySet Name="PrivatnoVozilo" EntityType="PutniNaloziSpanModel.PrivatnoVozilo" />
+          <EntitySet Name="Smejstaj" EntityType="PutniNaloziSpanModel.Smejstaj" />
           <EntitySet Name="PutniNalog" EntityType="PutniNaloziSpanModel.PutniNalog" />
           <AssociationSet Name="FK__PutniNalo__IDPri__2D27B809" Association="PutniNaloziSpanModel.FK__PutniNalo__IDPri__2D27B809">
             <End Role="PrijevoznaSredstva" EntitySet="PrijevoznaSredstva" />
@@ -256,7 +256,6 @@ warning 6002: The table/view 'PutniNaloziSpan.dbo.vwZaposleniciPoOdjelima' does 
             <End Role="PutniNalog" EntitySet="PutniNalog" />
             <End Role="PrivatnoVozilo" EntitySet="PrivatnoVozilo" />
           </AssociationSet>
-          <EntitySet Name="Smejstaj" EntityType="PutniNaloziSpanModel.Smejstaj" />
           <AssociationSet Name="FK__Smejstaj__IDPutn__34C8D9D1" Association="PutniNaloziSpanModel.FK__Smejstaj__IDPutn__34C8D9D1">
             <End Role="PutniNalog" EntitySet="PutniNalog" />
             <End Role="Smejstaj" EntitySet="Smejstaj" />
@@ -302,6 +301,19 @@ warning 6002: The table/view 'PutniNaloziSpan.dbo.vwZaposleniciPoOdjelima' does 
           <Property Name="IDPutnogNaloga" Type="Int32" Nullable="false" />
           <NavigationProperty Name="PutniNalog" Relationship="PutniNaloziSpanModel.FK__PrivatnoV__IDPut__31EC6D26" FromRole="PrivatnoVozilo" ToRole="PutniNalog" />
         </EntityType>
+        <EntityType Name="Smejstaj">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Prvo_noćenje" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Zadnje_noćenje" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Dolazak_u_smještaj" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Odlazak_iz_smještaja" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Komentar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDPutnogNaloga" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PutniNalog" Relationship="PutniNaloziSpanModel.FK__Smejstaj__IDPutn__34C8D9D1" FromRole="Smejstaj" ToRole="PutniNalog" />
+        </EntityType>
         <EntityType Name="PutniNalog">
           <Key>
             <PropertyRef Name="ID" />
@@ -315,6 +327,7 @@ warning 6002: The table/view 'PutniNaloziSpan.dbo.vwZaposleniciPoOdjelima' does 
           <Property Name="Relacija_putovanja" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Broj_projekta" Type="Int32" />
           <Property Name="Smještaj" Type="Boolean" Nullable="false" />
+          <Property Name="Broj_osoba" Type="Int32" />
           <NavigationProperty Name="PrijevoznaSredstva" Relationship="PutniNaloziSpanModel.FK__PutniNalo__IDPri__2D27B809" FromRole="PutniNalog" ToRole="PrijevoznaSredstva" />
           <NavigationProperty Name="PrivatnoVozilo" Relationship="PutniNaloziSpanModel.FK__PrivatnoV__IDPut__31EC6D26" FromRole="PutniNalog" ToRole="PrivatnoVozilo" />
           <NavigationProperty Name="Smejstaj" Relationship="PutniNaloziSpanModel.FK__Smejstaj__IDPutn__34C8D9D1" FromRole="PutniNalog" ToRole="Smejstaj" />
@@ -343,19 +356,6 @@ warning 6002: The table/view 'PutniNaloziSpan.dbo.vwZaposleniciPoOdjelima' does 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Smejstaj">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Prvo_noćenje" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Zadnje_noćenje" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Dolazak_u_smještaj" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Odlazak_iz_smještaja" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Komentar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IDPutnogNaloga" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="PutniNalog" Relationship="PutniNaloziSpanModel.FK__Smejstaj__IDPutn__34C8D9D1" FromRole="Smejstaj" ToRole="PutniNalog" />
-        </EntityType>
         <Association Name="FK__Smejstaj__IDPutn__34C8D9D1">
           <End Type="PutniNaloziSpanModel.PutniNalog" Role="PutniNalog" Multiplicity="1" />
           <End Type="PutniNaloziSpanModel.Smejstaj" Role="Smejstaj" Multiplicity="*" />
@@ -431,21 +431,6 @@ warning 6002: The table/view 'PutniNaloziSpan.dbo.vwZaposleniciPoOdjelima' does 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PutniNalog">
-            <EntityTypeMapping TypeName="PutniNaloziSpanModel.PutniNalog">
-              <MappingFragment StoreEntitySet="PutniNalog">
-                <ScalarProperty Name="Smještaj" ColumnName="Smještaj" />
-                <ScalarProperty Name="Broj_projekta" ColumnName="Broj projekta" />
-                <ScalarProperty Name="Relacija_putovanja" ColumnName="Relacija putovanja" />
-                <ScalarProperty Name="Razlog_dolaska" ColumnName="Razlog dolaska" />
-                <ScalarProperty Name="IDPrijevoznogSredstva" ColumnName="IDPrijevoznogSredstva" />
-                <ScalarProperty Name="Datum_zavrsetka_putovanja" ColumnName="Datum zavrsetka putovanja" />
-                <ScalarProperty Name="Datum_pocetka_putovanja" ColumnName="Datum pocetka putovanja" />
-                <ScalarProperty Name="Podnositelj_zahtjeva" ColumnName="Podnositelj zahtjeva" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Smejstaj">
             <EntityTypeMapping TypeName="PutniNaloziSpanModel.Smejstaj">
               <MappingFragment StoreEntitySet="Smejstaj">
@@ -455,6 +440,22 @@ warning 6002: The table/view 'PutniNaloziSpan.dbo.vwZaposleniciPoOdjelima' does 
                 <ScalarProperty Name="Dolazak_u_smještaj" ColumnName="Dolazak u smještaj" />
                 <ScalarProperty Name="Zadnje_noćenje" ColumnName="Zadnje noćenje" />
                 <ScalarProperty Name="Prvo_noćenje" ColumnName="Prvo noćenje" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PutniNalog">
+            <EntityTypeMapping TypeName="PutniNaloziSpanModel.PutniNalog">
+              <MappingFragment StoreEntitySet="PutniNalog">
+                <ScalarProperty Name="Broj_osoba" ColumnName="Broj osoba" />
+                <ScalarProperty Name="Smještaj" ColumnName="Smještaj" />
+                <ScalarProperty Name="Broj_projekta" ColumnName="Broj projekta" />
+                <ScalarProperty Name="Relacija_putovanja" ColumnName="Relacija putovanja" />
+                <ScalarProperty Name="Razlog_dolaska" ColumnName="Razlog dolaska" />
+                <ScalarProperty Name="IDPrijevoznogSredstva" ColumnName="IDPrijevoznogSredstva" />
+                <ScalarProperty Name="Datum_zavrsetka_putovanja" ColumnName="Datum zavrsetka putovanja" />
+                <ScalarProperty Name="Datum_pocetka_putovanja" ColumnName="Datum pocetka putovanja" />
+                <ScalarProperty Name="Podnositelj_zahtjeva" ColumnName="Podnositelj zahtjeva" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

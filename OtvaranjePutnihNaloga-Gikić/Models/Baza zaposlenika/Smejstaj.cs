@@ -13,8 +13,7 @@ namespace OtvaranjePutnihNaloga_Gikić.Models.Baza_zaposlenika
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-
-     [MetadataType(typeof(OtvaranjePutnihNaloga_Gikić.Models.MetadataKlasa.MetadataSmjestaj))]
+    [MetadataType(typeof(OtvaranjePutnihNaloga_Gikić.Models.MetadataKlasa.MetadataSmjestaj))]
     public partial class Smejstaj
     {
         public int ID { get; set; }

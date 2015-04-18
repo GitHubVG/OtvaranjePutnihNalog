@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "UnosSuputnika";
+}
+
+<h2>Unos suputnika</h2>
+
+<b>Molim unesite imena i prezimena suputnika</b>:
+<br />
+<br />
+@using(Html.BeginForm())
+{ 
+
+for(int i=0;i<ViewBag.DodatniPutnici;i++)
+{
+     @Html.TextBox("Suputnici")
+    <br />
+     
+}
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Create" class="btn btn-default" />
+    </div>
+</div>
+
+}

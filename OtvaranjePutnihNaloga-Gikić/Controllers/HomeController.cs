@@ -19,6 +19,11 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
         //provjera smještaja i prijevoza
         private static bool provjeraSmjestaj = false;
         private static bool provjeraPrijevozPrivatnimVozilom = false;
+        private static bool postojeLiSuputnici = false;
+        private static int brojDodatnihPutnika;
+        private static int brojSuputnika;
+        List<string> ImenaSuputnika = new List<string>();
+
 
         PutniNaloziEntities db = new PutniNaloziEntities();
 
@@ -32,7 +37,7 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
 
             provjeraSmjestaj = false;
             provjeraPrijevozPrivatnimVozilom = false;
-
+            postojeLiSuputnici = false;
             return View();
         }
 
@@ -126,19 +131,43 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
             ViewBag.PrijevoznoSredstvo = new SelectList(db.PrijevoznaSredstva, "IDTipPrijevoznogSredstva", "PrijevoznoSredstvo");
             
             ViewBag.PodnositeljZahtjeva = new SelectList(db.Zaposlenici.Where(x => x.Student == false),"Prezime","Prezime");
+
+            List<int> ukupnoZaposlenika = new List<int>();
+            int brojZaposlenika = db.Zaposlenici.Count();
+
+            ViewBag.Suputnici = new SelectList(ukupnoZaposlenika);
+
+            for (int i = 0; i < brojZaposlenika; i++)
+            {
+                ukupnoZaposlenika.Add(i);
+            }
+
+            
             return View();
         }
 
         [HttpPost]
-        public ActionResult OtvaranjePutnogNaloga(PutniNalog nalog, string PrijevoznoSredstvo, DateTime? Datum_pocetka_putovanja, DateTime? Datum_zavrsetka_putovanja,string PodnositeljZahtjeva)
+        public ActionResult OtvaranjePutnogNaloga(PutniNalog nalog, string PrijevoznoSredstvo, DateTime? Datum_pocetka_putovanja, DateTime? Datum_zavrsetka_putovanja,string PodnositeljZahtjeva,int Suputnici)
         {
             ViewBag.PrijevoznoSredstvo = new SelectList(db.PrijevoznaSredstva, "IDTipPrijevoznogSredstva", "PrijevoznoSredstvo");
             ViewBag.PodnositeljZahtjeva = new SelectList(db.Zaposlenici.Where(x => x.Student == false), "Prezime", "Prezime");
 
             nalog.IDPrijevoznogSredstva = int.Parse(PrijevoznoSredstvo);
-            
+            nalog.Broj_osoba = Suputnici+1;
             nalog.Podnositelj_zahtjeva = PodnositeljZahtjeva;
-           
+            brojSuputnika = Suputnici;
+           int brojZaposlenika = db.Zaposlenici.Count();
+
+           List<int> ukupnoZaposlenika = new List<int>();
+           brojDodatnihPutnika = Suputnici;
+           ViewBag.Suputnici = new SelectList(ukupnoZaposlenika);
+
+           for (int i = 0; i < brojZaposlenika; i++)
+           {
+               ukupnoZaposlenika.Add(i);
+           }
+
+
 
           //  provjera razlike u datumima
 
@@ -156,7 +185,7 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
                  
                   if (razlikaUDatumima.Days < 0)
                   {
-                      ModelState.AddModelError("Datum_pocetka_putovanja", "Datum pocetka putovanja mora biti prije datuma zavrsetka putovanja (MDY format)");
+                      ModelState.AddModelError("Datum_pocetka_putovanja", "Datum pocetka putovanja mora biti prije datuma zavrsetka putovanja (DMY format).");
                      
 
                   }
@@ -168,12 +197,18 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
             {
                 db.PutniNalog.Add(nalog);
                 db.SaveChanges();
+           
 
                 if (nalog.Smještaj == true)
                 {
                     provjeraSmjestaj = true;
                 }
+                if (Suputnici > 0)
+                {
+                    postojeLiSuputnici = true;
+                   
 
+                }
                 if (int.Parse(PrijevoznoSredstvo) == 2)
                 {
                     provjeraPrijevozPrivatnimVozilom = true;
@@ -185,10 +220,18 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
                 {
                     return RedirectToAction("Smjestaj");
                 }
+
+                if(Suputnici>0)
+                {
+                    postojeLiSuputnici = true;
+                    return RedirectToAction("UnosSuputnika",Suputnici);
+
+                }
                 else
                 {
                     dynamic email = new Email("PutniNalogEmail"); // POSTAL - ZA SLANJE EMAILOVA
                     email.To = "testiranjepostalemaila@gmail.com ";
+                    email.BrojPutnihNaloga = brojDodatnihPutnika + 1;
                     email.Nalog = nalog;
                     email.Send();
                     return RedirectToAction("Index");
@@ -226,12 +269,21 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
                 {
                     return RedirectToAction("Smjestaj");
                 }
+                if (postojeLiSuputnici)
+                {
+
+                    return RedirectToAction("UnosSuputnika", brojSuputnika);
+
+                }
+
                 else
                 {
                     dynamic email = new Email("PutniNalogEmail"); // POSTAL - ZA SLANJE EMAILOVA
                     email.To = "testiranjepostalemaila@gmail.com ";
                     email.PrivatnoVozilo = privatnoVozilo;
+                    email.BrojPutnihNaloga = brojDodatnihPutnika + 1;
                     email.Nalog = db.PutniNalog.OrderByDescending(x => x.ID).First();
+                    email.ImenaPutnika = ImenaSuputnika;
                     email.Send();
                     return RedirectToAction("Index");
                 }
@@ -301,16 +353,26 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
 
             }
 
+    
             if (ModelState.IsValid)
             {
                 db.Smejstaj.Add(smjestaj);
                 db.SaveChanges();
 
+                if (postojeLiSuputnici)
+                {
+
+                    return RedirectToAction("UnosSuputnika", brojSuputnika);
+
+                }
+                
                 dynamic email = new Email("PutniNalogEmail"); // POSTAL - ZA SLANJE EMAILOVA
                 email.To = "testiranjepostalemaila@gmail.com ";
-                email.PrivatnoVozilo = db.PrivatnoVozilo.OrderByDescending(x=>x.ID).First();
-                email.Nalog = db.PutniNalog.OrderByDescending(x => x.ID).First();
+                email.PrivatnoVozilo = db.PrivatnoVozilo.OrderByDescending(x=>x.ID).FirstOrDefault();
+                email.Nalog = db.PutniNalog.OrderByDescending(x => x.ID).FirstOrDefault();
+                email.BrojPutnihNaloga = brojDodatnihPutnika + 1;
                 email.Smjestaj = smjestaj;
+                email.ImenaPutnika = ImenaSuputnika;
                 email.Send();
 
 
@@ -326,6 +388,29 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
         {
            
             return View(db.PutniNalog);
+        }
+
+
+        public ActionResult UnosSuputnika()
+        {
+            @ViewBag.DodatniPutnici = brojDodatnihPutnika;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UnosSuputnika(string[] Suputnici)
+        {
+            ImenaSuputnika = Suputnici.ToList();
+            dynamic email = new Email("PutniNalogEmail"); // POSTAL - ZA SLANJE EMAILOVA
+            email.To = "testiranjepostalemaila@gmail.com ";
+            email.PrivatnoVozilo = db.PrivatnoVozilo.OrderByDescending(x => x.ID).FirstOrDefault();
+            email.Nalog = db.PutniNalog.OrderByDescending(x => x.ID).First();
+            email.Smjestaj = db.Smejstaj.OrderByDescending(x=>x.ID).FirstOrDefault();
+            email.BrojPutnihNaloga = brojDodatnihPutnika + 1;
+            email.ImenaPutnika = ImenaSuputnika;
+            email.Send();
+
+            return View("Index");
         }
         
     }

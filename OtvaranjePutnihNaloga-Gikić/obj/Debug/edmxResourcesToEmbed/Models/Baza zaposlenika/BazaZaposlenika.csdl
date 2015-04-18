@@ -58,6 +58,7 @@
       <End Role="PrijevoznaSredstva" EntitySet="PrijevoznaSredstva" />
     </AssociationSet>
     <EntitySet Name="PrivatnoVozilo" EntityType="PutniNaloziSpanModel.PrivatnoVozilo" />
+    <EntitySet Name="Smejstaj" EntityType="PutniNaloziSpanModel.Smejstaj" />
     <EntitySet Name="PutniNalog" EntityType="PutniNaloziSpanModel.PutniNalog" />
     <AssociationSet Name="FK__PutniNalo__IDPri__2D27B809" Association="PutniNaloziSpanModel.FK__PutniNalo__IDPri__2D27B809">
       <End Role="PrijevoznaSredstva" EntitySet="PrijevoznaSredstva" />
@@ -67,7 +68,6 @@
       <End Role="PutniNalog" EntitySet="PutniNalog" />
       <End Role="PrivatnoVozilo" EntitySet="PrivatnoVozilo" />
     </AssociationSet>
-    <EntitySet Name="Smejstaj" EntityType="PutniNaloziSpanModel.Smejstaj" />
     <AssociationSet Name="FK__Smejstaj__IDPutn__34C8D9D1" Association="PutniNaloziSpanModel.FK__Smejstaj__IDPutn__34C8D9D1">
       <End Role="PutniNalog" EntitySet="PutniNalog" />
       <End Role="Smejstaj" EntitySet="Smejstaj" />
@@ -113,6 +113,19 @@
     <Property Name="IDPutnogNaloga" Type="Int32" Nullable="false" />
     <NavigationProperty Name="PutniNalog" Relationship="PutniNaloziSpanModel.FK__PrivatnoV__IDPut__31EC6D26" FromRole="PrivatnoVozilo" ToRole="PutniNalog" />
   </EntityType>
+  <EntityType Name="Smejstaj">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Prvo_noćenje" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Zadnje_noćenje" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Dolazak_u_smještaj" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Odlazak_iz_smještaja" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Komentar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IDPutnogNaloga" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PutniNalog" Relationship="PutniNaloziSpanModel.FK__Smejstaj__IDPutn__34C8D9D1" FromRole="Smejstaj" ToRole="PutniNalog" />
+  </EntityType>
   <EntityType Name="PutniNalog">
     <Key>
       <PropertyRef Name="ID" />
@@ -126,6 +139,7 @@
     <Property Name="Relacija_putovanja" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Broj_projekta" Type="Int32" />
     <Property Name="Smještaj" Type="Boolean" Nullable="false" />
+    <Property Name="Broj_osoba" Type="Int32" />
     <NavigationProperty Name="PrijevoznaSredstva" Relationship="PutniNaloziSpanModel.FK__PutniNalo__IDPri__2D27B809" FromRole="PutniNalog" ToRole="PrijevoznaSredstva" />
     <NavigationProperty Name="PrivatnoVozilo" Relationship="PutniNaloziSpanModel.FK__PrivatnoV__IDPut__31EC6D26" FromRole="PutniNalog" ToRole="PrivatnoVozilo" />
     <NavigationProperty Name="Smejstaj" Relationship="PutniNaloziSpanModel.FK__Smejstaj__IDPutn__34C8D9D1" FromRole="PutniNalog" ToRole="Smejstaj" />
@@ -154,19 +168,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="Smejstaj">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Prvo_noćenje" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Zadnje_noćenje" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Dolazak_u_smještaj" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Odlazak_iz_smještaja" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Komentar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="IDPutnogNaloga" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="PutniNalog" Relationship="PutniNaloziSpanModel.FK__Smejstaj__IDPutn__34C8D9D1" FromRole="Smejstaj" ToRole="PutniNalog" />
-  </EntityType>
   <Association Name="FK__Smejstaj__IDPutn__34C8D9D1">
     <End Type="PutniNaloziSpanModel.PutniNalog" Role="PutniNalog" Multiplicity="1" />
     <End Type="PutniNaloziSpanModel.Smejstaj" Role="Smejstaj" Multiplicity="*" />

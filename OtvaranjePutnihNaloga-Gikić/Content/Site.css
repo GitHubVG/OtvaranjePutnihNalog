@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-
+    
 
 }
 
@@ -181,11 +181,13 @@ table tr th
      z-index:15;
      top:50%;
      left:50%;
-     margin:-100px 0 0 -150px;
+     margin:-100px 0 0 -240px;
      margin-top:200px;
      width:800px; 
+    
   
 }
+
 
 
 

@@ -4,8 +4,20 @@ From: vladimirgikic@yahoo.com
 Subject: Putni nalog
 
 Pozdrav,
-Zamolio bih jedan putni naloga za: @ViewBag.Nalog.Podnositelj_zahtjeva
+Zamolio bih @ViewBag.BrojPutnihNaloga putni(h) nalog(a) za:
 
+ @ViewBag.Nalog.Podnositelj_zahtjeva (podnositelj(ica) zahtjeva)
+
+@if (ViewBag.BrojPutnihNaloga>1)
+{
+    foreach (var putnik in @ViewBag.ImenaPutnika)
+    {
+        @putnik.ToString(); 
+    <text></text>
+    
+    }
+    
+}
 
 Datum putovanja: od @ViewBag.Nalog.Datum_pocetka_putovanja do @ViewBag.Nalog.Datum_zavrsetka_putovanja na relaciji @ViewBag.Nalog.Relacija_putovanja.
 

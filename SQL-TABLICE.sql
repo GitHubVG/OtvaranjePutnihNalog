@@ -122,6 +122,7 @@ SELECT * FROM PrijevoznaSredstva;
 SELECT * FROM TipPrijevoznogSredstva;
 
 SELECT * FROM SMEJSTAJ;
+
 SELECT * FROM PutniNalog order by ID desc;
 
 select * from PrivatnoVozilo;
@@ -134,4 +135,3 @@ join Smejstaj t2
 on t1.ID=t2.IDPutnogNaloga
 join PrivatnoVozilo t3
 on t1.ID=t3.IDPutnogNaloga
-
