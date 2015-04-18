@@ -10,7 +10,7 @@
 <br />
 @using(Html.BeginForm())
 { 
-
+    @Html.ValidationSummary("", new { @class = "text-danger" })
 for(int i=0;i<ViewBag.DodatniPutnici;i++)
 {
      @Html.TextBox("Suputnici")
@@ -20,7 +20,7 @@ for(int i=0;i<ViewBag.DodatniPutnici;i++)
 
 <div class="form-group">
     <div class="col-md-offset-2 col-md-10">
-        <input type="submit" value="Create" class="btn btn-default" />
+        <input type="submit" value="Send e-mail" class="btn btn-default" />
     </div>
 </div>
 

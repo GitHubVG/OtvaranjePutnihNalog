@@ -33,7 +33,7 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
             //(ako korisnik popuni putni nalog a ne ispuni podatke o smjestaju ili privatnom vozilu (ako postoji))
             ProvjeraPodataka provjera = new ProvjeraPodataka();
             provjera.ProvjeraIspunjenogNaloga();
-            
+
 
             provjeraSmjestaj = false;
             provjeraPrijevozPrivatnimVozilom = false;
@@ -129,8 +129,8 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
         public ActionResult OtvaranjePutnogNaloga()
         {
             ViewBag.PrijevoznoSredstvo = new SelectList(db.PrijevoznaSredstva, "IDTipPrijevoznogSredstva", "PrijevoznoSredstvo");
-            
-            ViewBag.PodnositeljZahtjeva = new SelectList(db.Zaposlenici.Where(x => x.Student == false),"Prezime","Prezime");
+
+            ViewBag.PodnositeljZahtjeva = new SelectList(db.Zaposlenici.Where(x => x.Student == false), "Prezime", "Prezime");
 
             List<int> ukupnoZaposlenika = new List<int>();
             int brojZaposlenika = db.Zaposlenici.Count();
@@ -142,62 +142,62 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
                 ukupnoZaposlenika.Add(i);
             }
 
-            
+
             return View();
         }
 
         [HttpPost]
-        public ActionResult OtvaranjePutnogNaloga(PutniNalog nalog, string PrijevoznoSredstvo, DateTime? Datum_pocetka_putovanja, DateTime? Datum_zavrsetka_putovanja,string PodnositeljZahtjeva,int Suputnici)
+        public ActionResult OtvaranjePutnogNaloga(PutniNalog nalog, string PrijevoznoSredstvo, DateTime? Datum_pocetka_putovanja, DateTime? Datum_zavrsetka_putovanja, string PodnositeljZahtjeva, int Suputnici)
         {
             ViewBag.PrijevoznoSredstvo = new SelectList(db.PrijevoznaSredstva, "IDTipPrijevoznogSredstva", "PrijevoznoSredstvo");
             ViewBag.PodnositeljZahtjeva = new SelectList(db.Zaposlenici.Where(x => x.Student == false), "Prezime", "Prezime");
 
             nalog.IDPrijevoznogSredstva = int.Parse(PrijevoznoSredstvo);
-            nalog.Broj_osoba = Suputnici+1;
+            nalog.Broj_osoba = Suputnici + 1;
             nalog.Podnositelj_zahtjeva = PodnositeljZahtjeva;
             brojSuputnika = Suputnici;
-           int brojZaposlenika = db.Zaposlenici.Count();
+            int brojZaposlenika = db.Zaposlenici.Count();
 
-           List<int> ukupnoZaposlenika = new List<int>();
-           brojDodatnihPutnika = Suputnici;
-           ViewBag.Suputnici = new SelectList(ukupnoZaposlenika);
+            List<int> ukupnoZaposlenika = new List<int>();
+            brojDodatnihPutnika = Suputnici;
+            ViewBag.Suputnici = new SelectList(ukupnoZaposlenika);
 
-           for (int i = 0; i < brojZaposlenika; i++)
-           {
-               ukupnoZaposlenika.Add(i);
-           }
+            for (int i = 0; i < brojZaposlenika; i++)
+            {
+                ukupnoZaposlenika.Add(i);
+            }
 
 
 
-          //  provjera razlike u datumima
+            //  provjera razlike u datumima
 
-            if(Datum_pocetka_putovanja!=null && Datum_zavrsetka_putovanja!=null)
+            if (Datum_pocetka_putovanja != null && Datum_zavrsetka_putovanja != null)
             {
                 DateTime d1 = (DateTime)Datum_pocetka_putovanja;
                 DateTime d2 = (DateTime)Datum_zavrsetka_putovanja;
 
-              // string polazakMDY = String.Format("{0:MM/d/yyyy HH:mm:ss}", d1);
-              // string zavrsetakMDY = String.Format("{0:MM/d/yyyy HH:mm:ss}", d2);
-               //d1 = Convert.ToDateTime(polazakMDY);
-               //d2 = Convert.ToDateTime(zavrsetakMDY);
+                // string polazakMDY = String.Format("{0:MM/d/yyyy HH:mm:ss}", d1);
+                // string zavrsetakMDY = String.Format("{0:MM/d/yyyy HH:mm:ss}", d2);
+                //d1 = Convert.ToDateTime(polazakMDY);
+                //d2 = Convert.ToDateTime(zavrsetakMDY);
 
-                  TimeSpan razlikaUDatumima  = d2.Subtract(d1);
-                 
-                  if (razlikaUDatumima.Days < 0)
-                  {
-                      ModelState.AddModelError("Datum_pocetka_putovanja", "Datum pocetka putovanja mora biti prije datuma zavrsetka putovanja (DMY format).");
-                     
+                TimeSpan razlikaUDatumima = d2.Subtract(d1);
 
-                  }
+                if (razlikaUDatumima.Days < 0)
+                {
+                    ModelState.AddModelError("Datum_pocetka_putovanja", "Datum pocetka putovanja mora biti prije datuma zavrsetka putovanja (DMY format).");
+
+
+                }
             }
 
-           
+
 
             if (ModelState.IsValid)
             {
                 db.PutniNalog.Add(nalog);
                 db.SaveChanges();
-           
+
 
                 if (nalog.Smještaj == true)
                 {
@@ -206,7 +206,7 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
                 if (Suputnici > 0)
                 {
                     postojeLiSuputnici = true;
-                   
+
 
                 }
                 if (int.Parse(PrijevoznoSredstvo) == 2)
@@ -221,10 +221,10 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
                     return RedirectToAction("Smjestaj");
                 }
 
-                if(Suputnici>0)
+                if (Suputnici > 0)
                 {
                     postojeLiSuputnici = true;
-                    return RedirectToAction("UnosSuputnika",Suputnici);
+                    return RedirectToAction("UnosSuputnika", Suputnici);
 
                 }
                 else
@@ -240,7 +240,7 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
 
             else
             {
-               
+
 
                 return View();
 
@@ -308,10 +308,10 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
             TimeSpan razlikaUDatumimaDolaskaIOdlaska = smjestaj.Odlazak_iz_smještaja.Subtract(smjestaj.Dolazak_u_smještaj);
             TimeSpan razlikaUDatumimaNocenja = smjestaj.Zadnje_noćenje.Subtract(smjestaj.Prvo_noćenje);
 
-           var pocetakPutovanja = db.PutniNalog.OrderByDescending(x => x.ID).First().Datum_pocetka_putovanja; //zadnji datum pocetka putovanja iz klase PutniNalog
-           var zavrsetakPutovanja = db.PutniNalog.OrderByDescending(x => x.ID).First().Datum_zavrsetka_putovanja; //zadnji datum završetka putovanja iz klase PutniNalog
+            var pocetakPutovanja = db.PutniNalog.OrderByDescending(x => x.ID).First().Datum_pocetka_putovanja; //zadnji datum pocetka putovanja iz klase PutniNalog
+            var zavrsetakPutovanja = db.PutniNalog.OrderByDescending(x => x.ID).First().Datum_zavrsetka_putovanja; //zadnji datum završetka putovanja iz klase PutniNalog
 
-            
+
 
 
             if (razlikaUDatumimaNocenja.Days < 0)
@@ -326,23 +326,23 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
 
             }
 
-            if(smjestaj.Prvo_noćenje<pocetakPutovanja || smjestaj.Prvo_noćenje>zavrsetakPutovanja)
+            if (smjestaj.Prvo_noćenje < pocetakPutovanja || smjestaj.Prvo_noćenje > zavrsetakPutovanja)
             {
                 ModelState.AddModelError("Prvo_noćenje", "Datum prvog noćenja ne može biti prije datuma početka putovanja te nakon datuma završetka putovanja.");
 
             }
-            if(smjestaj.Zadnje_noćenje>zavrsetakPutovanja)
+            if (smjestaj.Zadnje_noćenje > zavrsetakPutovanja)
             {
                 ModelState.AddModelError("Zadnje_noćenje", "Datum zadnjeg noćenja ne može biti nakon datuma završetka putnovanja.");
 
             }
-          
-            if(smjestaj.Dolazak_u_smještaj>smjestaj.Zadnje_noćenje || smjestaj.Dolazak_u_smještaj<pocetakPutovanja || smjestaj.Dolazak_u_smještaj>zavrsetakPutovanja)
+
+            if (smjestaj.Dolazak_u_smještaj > smjestaj.Zadnje_noćenje || smjestaj.Dolazak_u_smještaj < pocetakPutovanja || smjestaj.Dolazak_u_smještaj > zavrsetakPutovanja)
             {
                 ModelState.AddModelError("Dolazak_u_smještaj", "Datum dolaska u smještaj ne može biti nakon datuma zadnjeg noćenja, ne smije biti manji od datuma početka putovanja te veći od datuma završetka putovanja.");
 
             }
-            if(smjestaj.Dolazak_u_smještaj>smjestaj.Prvo_noćenje)
+            if (smjestaj.Dolazak_u_smještaj > smjestaj.Prvo_noćenje)
             {
                 ModelState.AddModelError("Dolazak_u_smještaj", "Datum dolaska u smještaj ne može biti nakon datuma prvog noćenja.");
 
@@ -353,7 +353,7 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
 
             }
 
-    
+
             if (ModelState.IsValid)
             {
                 db.Smejstaj.Add(smjestaj);
@@ -365,10 +365,10 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
                     return RedirectToAction("UnosSuputnika", brojSuputnika);
 
                 }
-                
+
                 dynamic email = new Email("PutniNalogEmail"); // POSTAL - ZA SLANJE EMAILOVA
                 email.To = "testiranjepostalemaila@gmail.com ";
-                email.PrivatnoVozilo = db.PrivatnoVozilo.OrderByDescending(x=>x.ID).FirstOrDefault();
+                email.PrivatnoVozilo = db.PrivatnoVozilo.OrderByDescending(x => x.ID).FirstOrDefault();
                 email.Nalog = db.PutniNalog.OrderByDescending(x => x.ID).FirstOrDefault();
                 email.BrojPutnihNaloga = brojDodatnihPutnika + 1;
                 email.Smjestaj = smjestaj;
@@ -386,7 +386,7 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
 
         public ActionResult IspisPutnogNaloga()
         {
-           
+
             return View(db.PutniNalog);
         }
 
@@ -400,18 +400,74 @@ namespace OtvaranjePutnihNaloga_Gikić.Controllers
         [HttpPost]
         public ActionResult UnosSuputnika(string[] Suputnici)
         {
-            ImenaSuputnika = Suputnici.ToList();
-            dynamic email = new Email("PutniNalogEmail"); // POSTAL - ZA SLANJE EMAILOVA
-            email.To = "testiranjepostalemaila@gmail.com ";
-            email.PrivatnoVozilo = db.PrivatnoVozilo.OrderByDescending(x => x.ID).FirstOrDefault();
-            email.Nalog = db.PutniNalog.OrderByDescending(x => x.ID).First();
-            email.Smjestaj = db.Smejstaj.OrderByDescending(x=>x.ID).FirstOrDefault();
-            email.BrojPutnihNaloga = brojDodatnihPutnika + 1;
-            email.ImenaPutnika = ImenaSuputnika;
-            email.Send();
+            @ViewBag.DodatniPutnici = brojDodatnihPutnika;
+            List<int> studentsID = new List<int>();
+            string suputnik;
+            for (int i = 0; i < Suputnici.Length; i++)
+            {
+                suputnik = Suputnici[i];
+                string[] imeIPrezime = Suputnici[i].Split();
 
-            return View("Index");
+                for (int j = 0; j < imeIPrezime.Length; j++)
+                {
+                    if (j + 1 < imeIPrezime.Length || imeIPrezime.Length==1)
+                    {
+                        string ime = imeIPrezime[j];
+                        string prezime="";
+                     
+                        if (imeIPrezime.Length > 1)
+                        {
+                            prezime = imeIPrezime[j + 1];
+                        }
+                     
+                        if (db.Zaposlenici.Any(x => x.Ime.ToLower().StartsWith(ime.ToLower())) && db.Zaposlenici.Any(x => x.Prezime.ToLower().StartsWith(prezime.ToLower())))
+                        {
+                           
+                           var uneseniSuputnik = db.Zaposlenici.Where(x => x.Prezime.ToLower().StartsWith(prezime)).Where(x => x.Ime.ToLower().StartsWith(ime.ToLower()));
+                           if (uneseniSuputnik.First().Student)
+                           {
+                               studentsID.Add(uneseniSuputnik.First().ID);
+                           }
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("Suputnici", "Molim unesite točno ime i prezime zaposlenika (bez korištenja slova č,ć,ž i š).");
+
+                        }
+                    }
+                }
+
+          
+
+
+            }
+            if(Suputnici.Any(x=>x==""))
+            {
+                ModelState.AddModelError("Suputnici", "Molim unesite točno ime i prezime zaposlenika (bez korištenja slova č,ć,ž i š.");
+
+            }
+
+            if (ModelState.IsValid)
+            {
+                ImenaSuputnika = Suputnici.ToList();
+                dynamic email = new Email("PutniNalogEmail"); // POSTAL - ZA SLANJE EMAILOVA
+                email.To = "testiranjepostalemaila@gmail.com ";
+                email.PrivatnoVozilo = db.PrivatnoVozilo.OrderByDescending(x => x.ID).FirstOrDefault();
+                email.Nalog = db.PutniNalog.OrderByDescending(x => x.ID).First();
+                email.Smjestaj = db.Smejstaj.OrderByDescending(x => x.ID).FirstOrDefault();
+                email.BrojPutnihNaloga = brojDodatnihPutnika + 1 - studentsID.Count();
+                email.BrojStudenata = studentsID.Count();
+                email.UkupanBrojPutnika = brojDodatnihPutnika;
+                email.ImenaPutnika = ImenaSuputnika;
+                email.Send();
+
+                return View("Index");
+            }
+            else
+            {
+                return View();
+            }
         }
-        
+
     }
 }

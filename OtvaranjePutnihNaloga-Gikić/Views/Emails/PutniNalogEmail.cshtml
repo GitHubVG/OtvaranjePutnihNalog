@@ -4,26 +4,29 @@ From: vladimirgikic@yahoo.com
 Subject: Putni nalog
 
 Pozdrav,
-Zamolio bih @ViewBag.BrojPutnihNaloga putni(h) nalog(a) za:
+zamolio bih @ViewBag.BrojPutnihNaloga putni(h) nalog(a) za:
 
- @ViewBag.Nalog.Podnositelj_zahtjeva (podnositelj(ica) zahtjeva)
-
-@if (ViewBag.BrojPutnihNaloga>1)
+@ViewBag.Nalog.Podnositelj_zahtjeva (podnositelj(ica) zahtjeva)
+@if (ViewBag.UkupanBrojPutnika > 1)
 {
     foreach (var putnik in @ViewBag.ImenaPutnika)
     {
-        @putnik.ToString(); 
-    <text></text>
+@putnik.ToString(); 
+<text></text>
     
     }
     
 }
 
+@if(ViewBag.BrojStudenata>0)
+{
+<text>Broj studenata koji idu na put (nije potreban putni nalog): @ViewBag.BrojStudenata.</text>
+}
+
 Datum putovanja: od @ViewBag.Nalog.Datum_pocetka_putovanja do @ViewBag.Nalog.Datum_zavrsetka_putovanja na relaciji @ViewBag.Nalog.Relacija_putovanja.
 
 @if(@ViewBag.Nalog.IDPrijevoznogSredstva == 2)
-{
-    @: Za put ćemo koristiti privatno vozilo registracije @ViewBag.PrivatnoVozilo.RegistracijaPrivatnogVozila
+{@: Za put ćemo koristiti privatno vozilo registracije @ViewBag.PrivatnoVozilo.RegistracijaPrivatnogVozila
   
   
 }
